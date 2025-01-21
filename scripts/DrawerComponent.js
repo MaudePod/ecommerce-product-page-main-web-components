@@ -6,7 +6,6 @@ export default class DrawerComponent extends HTMLElement {
     }
     connectedCallback(
     ) {
-
     }
     disconnectedCallback(){
     }

@@ -31,48 +31,15 @@ body {
 
 main {
     display: grid;
-
+    max-width: 1440px;
+    max-height: 900px;
+    place-self: center;
 }
 
 header {
     display: grid;
     height: 150px;
 }
-
-nav {
-    display: grid;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 25px 10%;
-    place-items: center;
-    grid-auto-flow: column;
-}
-
-section[class="logo"] svg {
-    width: 100px;
-}
-
-menu[id="desktop-menu"] {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 10px;
-    text-align: center;
-    color: var(--dark-grayish-blue);
-    place-items: center;
-}
-
-a,
-:visited {
-    color: var(--dark-grayish-blue);
-    text-decoration: none;
-}
-
-menu[id="desktop-menu"] li{
-        list-style-type: none;
-}
-
-menu[id="desktop-menu"] li a {}
-
 
 div[class="attribution"] {
     position: absolute;
@@ -82,21 +49,231 @@ div[class="attribution"] {
     margin: 0 auto;
 }
 
-button[id="account"] img {
-    width: 35px;
-    height: 35px;
+section[class="main-card"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
 }
 
-button[id="account"] {
+section[class="left"] button {
     background-color: transparent;
-    border-color: transparent;
-    outline-color: transparent; 
-    cursor: pointer;
-    grid-column: 11;
+    border: 0;
+    cursor: zoom-in;
 }
 
-@container(inline-size < 1100px) {
-    menu[id="desktop-menu"] {
-        display: none;
-      }
+section[class="left"] button img {
+    width: 400px;
+    height: 450px;
+    border-radius: 20px;
+    margin-bottom: 50px;
 }
+
+section[class="thumbnails"] {
+    display: grid;
+    grid-auto-flow: column;
+    width: 400px;
+    place-items: center;
+    gap: 10px;
+}
+
+section[class="thumbnails"] img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+section[class="right"] {
+    display: grid;
+    width: 445px;
+    justify-self: start;
+    align-content: center;
+    padding-left: 100px;
+    margin-bottom: 100px;
+}
+
+input[name="thumbnails"] {
+    display: none;
+}
+
+section[class="left"] button {
+    display: none;
+}
+
+label {
+    display: grid;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+section[class="main-card"]:has(input[id="thumbnail-1"]:checked) {
+    button[class="image-1"] {
+        display: grid;
+    }
+
+    label[for="thumbnail-1"] img {
+        filter: saturate(0.5);
+        border-radius: 10px;
+        border: 1px solid var(--orange);
+    }
+
+}
+
+section[class="main-card"]:has(input[id="thumbnail-2"]:checked) {
+    button[class="image-2"] {
+        display: grid;
+    }
+
+    label[for="thumbnail-2"] img {
+        filter: saturate(0.5);
+        border-radius: 10px;
+        border: 1px solid var(--orange);
+    }
+}
+
+section[class="main-card"]:has(input[id="thumbnail-3"]:checked) {
+    button[class="image-3"] {
+        display: grid;
+    }
+
+    label[for="thumbnail-3"] img {
+        filter: saturate(0.5);
+        border-radius: 10px;
+        border: 1px solid var(--orange);
+    }
+}
+
+section[class="main-card"]:has(input[id="thumbnail-4"]:checked) {
+    button[class="image-4"] {
+        display: grid;
+    }
+
+    label[for="thumbnail-4"] img {
+        filter: saturate(0.5);
+        border-radius: 10px;
+        border: 1px solid var(--orange);
+    }
+}
+
+section[id="lightbox"] {
+    transition: display 500ms, opacity 2s;
+}
+
+section[id="lightbox"]:popover-open {
+    height: 100svh;
+    width: 100svw;
+    background-color: hsl(0deg, 0%, 0%, 75%);
+
+    display: grid;
+    place-items: center;
+}
+
+p[class="company-name"] {
+    color: var(--dark-grayish-blue);
+}
+
+section[class="right"] h1 {
+    font-size: 3em;
+    margin: 5px;
+}
+
+p[class="product-description"] {
+    color: var(--dark-grayish-blue);
+}
+
+section[class="price"] {
+    font-size: 2em;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+section[class="current-price"] {
+    font-weight: 700;
+    color: var(--very-dark-blue)
+}
+
+section[class="discount"] {
+    background-color: var(--very-dark-blue);
+    color: white;
+    height: min-content;
+    width: min-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.7em;
+}
+
+section[class="previous-price"] {
+    text-decoration: line-through;
+    font-size: 0.5em;
+    color: var(--dark-graysih-blue);
+}
+
+section[class="cart-controls"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+button[id="add-to-cart"] {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    gap: 5px;
+    color: var(--very-dark-blue);
+    background-color:var(--orange);
+    font-weight: 700;
+    border-color: transparent;
+    border-radius: 15px;
+    font-size: large;
+    width: 100%;
+    cursor: pointer;
+}
+
+button[id="add-to-cart"] svg {
+    height: 22px;
+    width: 20px;
+}
+
+
+section[class="controls"] {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    background-color: var(--light-grayish-blue);
+    width: min-content;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+section[class="controls"] button {
+    border-color: transparent;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+section[class="controls"] button svg {
+    display: grid;
+    place-self: center;
+    width: 12px;
+    height: 12px;
+}
+
+span[class="quantity"] {
+    display: grid;
+    place-content: center;
+    color: var(--very-dark-blue);
+    font-weight: 700;
+}
+
+
+@starting-style {
+    section[id="lightbox"] {
+        opacity: 0;
+    }
+}
+
+@container(inline-size < 1100px) {}
