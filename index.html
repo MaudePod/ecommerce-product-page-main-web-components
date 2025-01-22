@@ -176,6 +176,7 @@
             <cart-component>
               <template shadowrootmode="open" id="cart-template">
                 <button id="toggle-cart" popovertarget="cart">
+                  <span class="cart-count"></span>
                   <svg viewbox="0 0 22 20">
                     <path
                       d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
@@ -186,9 +187,11 @@
                   <h3>Cart</h3>
                   <hr>
                   <section class="cart-contents">
-                    <span class="empty-cart-message">
-                      Your cart is empty.
-                    </span>
+                    <slot name="cart-items">
+                      <span class="empty-cart-message">
+                        Your cart is empty.
+                      </span>
+                    </slot>
                   </section>
                 </section>
                 <style>
@@ -222,11 +225,25 @@
                     outline-color: transparent;
                     anchor-name: --cart-button;
                     cursor: pointer;
+                    position: relative;
                   }
 
                   button[popovertarget="cart"] svg {
                     height: 25px;
                     width: 25px;
+                  }
+
+                  span[class='cart-count'] {
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 50%;
+                    color: white;
+                    background-color: var(--orange);
+                    position: absolute;
+                    display: none;
+                    place-items: center;
+                    right: 0px;
+                    top: -5px;
                   }
 
                   section[id="cart"] h3 {
@@ -331,147 +348,889 @@
             }
           </style>
         </template>
-
     </navigation-component>
-
   </header>
   <main>
-
-    <section class="main-card">
-      <section class="left">
-        <button class="image-1" popovertarget="lightbox">
-          <img src="./images/image-product-1.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-        </button>
-        <button class="image-2" popovertarget="lightbox">
-          <img src="./images/image-product-2.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-        </button>
-        <button class="image-3" popovertarget="lightbox">
-          <img src="./images/image-product-3.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-        </button>
-        <button class="image-4" popovertarget="lightbox">
-          <img src="./images/image-product-4.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-        </button>
-
-        <section class="thumbnails">
-          <label for="thumbnail-1">
-            <input type="radio" name="thumbnails" id="thumbnail-1" checked>
-            <img src="./images/image-product-1-thumbnail.jpg" width="176px" height="176px"
-              alt="Thumbnail image of a shoe">
-          </label>
-          <label for="thumbnail-2">
-            <input type="radio" name="thumbnails" id="thumbnail-2">
-            <img src="./images/image-product-2-thumbnail.jpg" width="176px" height="176px"
-              alt="Thumbnail image of a shoe">
-          </label>
-          <label for="thumbnail-3">
-            <input type="radio" name="thumbnails" id="thumbnail-3">
-            <img src="./images/image-product-3-thumbnail.jpg" width="176px" height="176px"
-              alt="Thumbnail image of a shoe">
-          </label>
-          <label for="thumbnail-4">
-            <input type="radio" name="thumbnails" id="thumbnail-4">
-            <img src="./images/image-product-4-thumbnail.jpg" width="176px" height="176px"
-              alt="Thumbnail image of a shoe">
-          </label>
-        </section>
-      </section>
-      <section id="lightbox" popover>
-        <section class="left">
-          <button class="image-1">
-            <img src="./images/image-product-1.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-          </button>
-          <button class="image-2">
-            <img src="./images/image-product-2.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-          </button>
-          <button class="image-3">
-            <img src="./images/image-product-3.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-          </button>
-          <button class="image-4">
-            <img src="./images/image-product-4.jpg" width="1000px" height="1000px" alt="Image of a shoe">
-          </button>
-
-          <section class="thumbnails">
-            <label for="thumbnail-1">
-              <input type="radio" name="thumbnails" id="thumbnail-1">
-              <img src="./images/image-product-1-thumbnail.jpg" width="176px" height="176px"
-                alt="Thumbnail image of a shoe">
-            </label>
-            <label for="thumbnail-2">
-              <input type="radio" name="thumbnails" id="thumbnail-2">
-              <img src="./images/image-product-2-thumbnail.jpg" width="176px" height="176px"
-                alt="Thumbnail image of a shoe">
-            </label>
-            <label for="thumbnail-3">
-              <input type="radio" name="thumbnails" id="thumbnail-3">
-              <img src="./images/image-product-3-thumbnail.jpg" width="176px" height="176px"
-                alt="Thumbnail image of a shoe">
-            </label>
-            <label for="thumbnail-4">
-              <input type="radio" name="thumbnails" id="thumbnail-4">
-              <img src="./images/image-product-4-thumbnail.jpg" width="176px" height="176px"
-                alt="Thumbnail image of a shoe">
-            </label>
-          </section>
-        </section>
-      </section>
-      <section class="right">
-        <p class="company-name">
-          Sneaker Company
-        </p>
-        <h1>
-          Fall Limited Edition Sneakers
-        </h1>
-        <p class="product-description">
-
-          These low-profile sneakers are your perfect casual wear companion. Featuring a
-          durable rubber outer sole, they’ll withstand everything the weather can offer.
-        </p>
-        <section class="price">
-          <section class="current-price">
-            $125.00
-          </section>
-          <section class="discount">
-            50%
-          </section>
-          <section class="previous-price">
-            $250.00
-          </section>
-        </section>
-        <section class="cart-controls">
-          <section class="controls">
-            <button class="minus">
-              <svg viewbox="0 0 12 4">
-                <defs>
-                  <path
-                    d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z"
-                    id="a" />
-                </defs>
-                <use fill="#FF7E1B" fill-rule="nonzero" xlink:href="#a" />
+    <product-display-component>
+      <template shadowrootmode="open" id="product-display-component">
+        <section class="main-card">
+          <section class="left">
+            <label for="previous-1">
+              <input type="radio" name="thumbnails" id="previous-1">
+              <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
               </svg>
-            </button>
-            <span class="quantity">0</span>
-            <button class="plus">
-              <svg viewbox="0 0 12 12">
-                <defs>
-                  <path
-                    d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z"
-                    id="b" />
-                </defs>
-                <use fill="#FF7E1B" fill-rule="nonzero" xlink:href="#b" />
+            </label>
+            <label for="previous-2">
+              <input type="radio" name="thumbnails" id="previous-2">
+              <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
               </svg>
+            </label>
+            <label for="previous-3">
+              <input type="radio" name="thumbnails" id="previous-3">
+              <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+              </svg>
+            </label>
+            <label for="previous-4">
+              <input type="radio" name="thumbnails" id="previous-4">
+              <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+              </svg>
+            </label>
+            <label for="next-1">
+              <input type="radio" name="thumbnails" id="next-1">
+              <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+              </svg>
+            </label>
+            <label for="next-2">
+              <input type="radio" name="thumbnails" id="next-2">
+              <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+              </svg>
+            </label>
+            <label for="next-3">
+              <input type="radio" name="thumbnails" id="next-3">
+              <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+              </svg>
+            </label>
+            <label for="next-4">
+              <input type="radio" name="thumbnails" id="next-4">
+              <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+              </svg>
+            </label>
+            <button class="image-1" popovertarget="lightbox">
+              <img src="./images/image-product-1.jpg" width="1000px" height="1000px" alt="Image of a shoe">
             </button>
+            <button class="image-2" popovertarget="lightbox">
+              <img src="./images/image-product-2.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+            </button>
+            <button class="image-3" popovertarget="lightbox">
+              <img src="./images/image-product-3.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+            </button>
+            <button class="image-4" popovertarget="lightbox">
+              <img src="./images/image-product-4.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+            </button>
+
+            <section class="thumbnails">
+              <label for="thumbnail-1">
+                <input type="radio" name="thumbnails" id="thumbnail-1" checked>
+                <img src="./images/image-product-1-thumbnail.jpg" width="176px" height="176px"
+                  alt="Thumbnail image of a shoe">
+              </label>
+              <label for="thumbnail-2">
+                <input type="radio" name="thumbnails" id="thumbnail-2">
+                <img src="./images/image-product-2-thumbnail.jpg" width="176px" height="176px"
+                  alt="Thumbnail image of a shoe">
+              </label>
+              <label for="thumbnail-3">
+                <input type="radio" name="thumbnails" id="thumbnail-3">
+                <img src="./images/image-product-3-thumbnail.jpg" width="176px" height="176px"
+                  alt="Thumbnail image of a shoe">
+              </label>
+              <label for="thumbnail-4">
+                <input type="radio" name="thumbnails" id="thumbnail-4">
+                <img src="./images/image-product-4-thumbnail.jpg" width="176px" height="176px"
+                  alt="Thumbnail image of a shoe">
+              </label>
+            </section>
           </section>
-          <button id="add-to-cart">
-            <svg viewbox="0 0 22 20">
-              <path
-                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
-                fill="#69707D" fill-rule="nonzero" />
-            </svg>
-            Add to cart
-          </button>
+          <section id="lightbox" popover>
+            <lightbox-component>
+              <template shadowrootmode="open" id="lightbox-template">
+                <section class="left">
+                  <label for="previous-1">
+                    <input type="radio" name="thumbnails" id="previous-1">
+                    <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="previous-2">
+                    <input type="radio" name="thumbnails" id="previous-2">
+                    <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="previous-3">
+                    <input type="radio" name="thumbnails" id="previous-3">
+                    <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="previous-4">
+                    <input type="radio" name="thumbnails" id="previous-4">
+                    <svg viewbox="0 0 12 18" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="next-1">
+                    <input type="radio" name="thumbnails" id="next-1">
+                    <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="next-2">
+                    <input type="radio" name="thumbnails" id="next-2">
+                    <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="next-3">
+                    <input type="radio" name="thumbnails" id="next-3">
+                    <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <label for="next-4">
+                    <input type="radio" name="thumbnails" id="next-4">
+                    <svg viewbox="0 0 13 18" width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <button class="image-1">
+                    <img src="./images/image-product-1.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+                  </button>
+                  <button class="image-2">
+                    <img src="./images/image-product-2.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+                  </button>
+                  <button class="image-3">
+                    <img src="./images/image-product-3.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+                  </button>
+                  <button class="image-4">
+                    <img src="./images/image-product-4.jpg" width="1000px" height="1000px" alt="Image of a shoe">
+                  </button>
+                  <button id="close" popovertarget="lightbox">
+                    <svg viewbox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+                        fill-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <section class="thumbnails">
+                    <label for="thumbnail-1">
+                      <input type="radio" name="thumbnails" id="thumbnail-1" checked>
+                      <img src="./images/image-product-1-thumbnail.jpg" width="176px" height="176px"
+                        alt="Thumbnail image of a shoe">
+                    </label>
+                    <label for="thumbnail-2">
+                      <input type="radio" name="thumbnails" id="thumbnail-2">
+                      <img src="./images/image-product-2-thumbnail.jpg" width="176px" height="176px"
+                        alt="Thumbnail image of a shoe">
+                    </label>
+                    <label for="thumbnail-3">
+                      <input type="radio" name="thumbnails" id="thumbnail-3">
+                      <img src="./images/image-product-3-thumbnail.jpg" width="176px" height="176px"
+                        alt="Thumbnail image of a shoe">
+                    </label>
+                    <label for="thumbnail-4">
+                      <input type="radio" name="thumbnails" id="thumbnail-4">
+                      <img src="./images/image-product-4-thumbnail.jpg" width="176px" height="176px"
+                        alt="Thumbnail image of a shoe">
+                    </label>
+                  </section>
+                </section>
+                <style>
+                  section[class="left"] button {
+                    background-color: transparent;
+                    border: 0;
+                    cursor: zoom-in;
+                  }
+
+                  section[class="left"] button img {
+                    width: 400px;
+                    height: 450px;
+                    border-radius: 20px;
+                    margin-bottom: 50px;
+                    object-fit: cover;
+                  }
+
+                  section[class="left"] {
+                    position: relative;
+                    user-select: none;
+                    -webkit-user-select: none;
+                  }
+
+                  section[class="thumbnails"] {
+                    display: grid;
+                    grid-auto-flow: column;
+                    width: 400px;
+                    place-items: center;
+                    gap: 10px;
+                  }
+
+                  section[class="thumbnails"] img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    object-fit: cover;
+                  }
+
+                  input[name="thumbnails"] {
+                    display: none;
+                  }
+
+                  section[class="left"] button {
+                    display: none;
+                  }
+
+                  label {
+                    display: grid;
+                    width: 80px;
+                    height: 80px;
+                    cursor: pointer;
+                  }
+
+                  section[class="left"]>label {
+                    display: none
+                  }
+
+                  section[class="thumbnails"] label:hover {
+                    filter: saturate(0.5);
+                  }
+
+                  label[for="previous-4"],
+                  label[for="previous-3"],
+                  label[for="previous-2"],
+                  label[for="previous-1"] {
+                    position: absolute;
+                    top: 225px;
+                    left: -25px;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    background-color: var(--light-grayish-blue);
+                  }
+
+                  label[for="next-4"],
+                  label[for="next-3"],
+                  label[for="next-2"],
+                  label[for="next-1"] {
+                    position: absolute;
+                    top: 225px;
+                    right: -25px;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    background-color: var(--light-grayish-blue);
+                  }
+
+                  :host:has(input[id="next-4"]:checked),
+                  :host:has(input[id="previous-2"]:checked),
+                  :host:has(input[id="thumbnail-1"]:checked) {
+                    button[class="image-1"] {
+                      display: grid;
+                    }
+
+                    label[for="thumbnail-1"] img {
+                      filter: saturate(0.5);
+                      border-radius: 10px;
+                      border: 1px solid var(--orange);
+                      box-shadow: 0px 0px 2px 1px red;
+                    }
+
+                    label[for="previous-1"] {
+                      display: grid;
+                      place-items: center;
+                    }
+
+                    label[for="next-1"] {
+                      display: grid;
+                      place-items: center;
+                    }
+                  }
+
+                  :host:has(input[id="next-1"]:checked),
+                  :host:has(input[id="previous-3"]:checked),
+                  :host:has(input[id="thumbnail-2"]:checked) {
+                    button[class="image-2"] {
+                      display: grid;
+                    }
+
+                    label[for="thumbnail-2"] img {
+                      filter: saturate(0.5);
+                      border-radius: 10px;
+                      border: 1px solid var(--orange);
+                      box-shadow: 0px 0px 2px 1px red;
+                    }
+
+                    label[for="previous-2"] {
+                      display: grid;
+                      place-items: center;
+                    }
+
+                    label[for="next-2"] {
+                      display: grid;
+                      place-items: center;
+                    }
+                  }
+
+                  :host:has(input[id="next-2"]:checked),
+                  :host:has(input[id="previous-4"]:checked),
+                  :host:has(input[id="thumbnail-3"]:checked) {
+                    button[class="image-3"] {
+                      display: grid;
+                    }
+
+                    label[for="thumbnail-3"] img {
+                      filter: saturate(0.5);
+                      border-radius: 10px;
+                      border: 1px solid var(--orange);
+                      box-shadow: 0px 0px 2px 1px red;
+                    }
+
+                    label[for="previous-3"] {
+                      display: grid;
+                      place-items: center;
+                    }
+
+                    label[for="next-3"] {
+                      display: grid;
+                      place-items: center;
+                    }
+
+                  }
+
+                  :host:has(input[id="next-3"]:checked),
+                  :host:has(input[id="previous-1"]:checked),
+                  :host:has(input[id="thumbnail-4"]:checked) {
+                    button[class="image-4"] {
+                      display: grid;
+                    }
+
+                    label[for="thumbnail-4"] img {
+                      filter: saturate(0.5);
+                      border-radius: 10px;
+                      border: 1px solid var(--orange);
+                      box-shadow: 0px 0px 2px 1px red;
+                    }
+
+                    label[for="previous-4"] {
+                      display: grid;
+                      place-items: center;
+                    }
+
+                    label[for="next-4"] {
+                      display: grid;
+                      place-items: center;
+                    }
+
+                  }
+
+
+                  section[class="left"] button[id="close"] {
+                    position: absolute;
+                    display: grid;
+                    cursor: pointer;
+                    top: -50px;
+                    right: 0;
+                    fill: var(--orange);
+                  }
+
+                  button[id="close"] svg {
+                    width: 20px;
+                    height: 20px;
+                  }
+
+                  @container(inline-size < 1100px) {}
+                </style>
+              </template>
+            </lightbox-component>
+          </section>
+
+          <section class="right">
+            <p class="company-name">
+              Sneaker Company
+            </p>
+            <h1>
+              Fall Limited Edition Sneakers
+            </h1>
+            <p class="product-description">
+
+              These low-profile sneakers are your perfect casual wear companion. Featuring a
+              durable rubber outer sole, they’ll withstand everything the weather can offer.
+            </p>
+            <section class="price">
+              <section class="current-price">
+                $125.00
+              </section>
+              <section class="discount">
+                50%
+              </section>
+              <section class="previous-price">
+                $250.00
+              </section>
+            </section>
+            <section class="cart-controls">
+              <section class="controls">
+                <button class="minus">
+                  <svg viewbox="0 0 12 4">
+                    <defs>
+                      <path
+                        d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z"
+                        id="a" />
+                    </defs>
+                    <use fill="#FF7E1B" fill-rule="nonzero" xlink:href="#a" />
+                  </svg>
+                </button>
+                <span class="quantity">0</span>
+                <button class="plus">
+                  <svg viewbox="0 0 12 12">
+                    <defs>
+                      <path
+                        d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z"
+                        id="b" />
+                    </defs>
+                    <use fill="#FF7E1B" fill-rule="nonzero" xlink:href="#b" />
+                  </svg>
+                </button>
+              </section>
+              <button id="add-to-cart">
+                <svg viewbox="0 0 22 20">
+                  <path
+                    d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                    fill-rule="nonzero" />
+                </svg>
+                Add to cart
+              </button>
+            </section>
+          </section>
+
         </section>
-      </section>
-    </section>
+        <style>
+          section[class="main-card"] {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: end;
+          }
+
+          section[class="left"] button {
+            display: none;
+            background-color: transparent;
+            border: 0;
+            cursor: zoom-in;
+          }
+
+          section[class="left"] button img {
+            width: 400px;
+            height: 450px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            object-fit: cover;
+          }
+
+          section[class="left"] {
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+          }
+
+          section[class="thumbnails"] {
+            display: grid;
+            grid-auto-flow: column;
+            width: 400px;
+            place-items: center;
+            gap: 10px;
+          }
+
+          section[class="thumbnails"] img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+          }
+
+          section[class="right"] {
+            display: grid;
+            width: 445px;
+            justify-self: start;
+            align-content: center;
+            padding-left: 100px;
+            margin-bottom: 100px;
+          }
+
+          input[name="thumbnails"] {
+            display: none;
+          }
+
+          label {
+            display: grid;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+          }
+
+          section[class="left"]>label {
+            display: none
+          }
+
+          section[class="thumbnails"] label:hover {
+            filter: saturate(0.5);
+          }
+
+          label[for="previous-4"],
+          label[for="previous-3"],
+          label[for="previous-2"],
+          label[for="previous-1"] {
+            position: absolute;
+            top: 225px;
+            left: -25px;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: var(--light-grayish-blue);
+          }
+
+          label[for="next-4"],
+          label[for="next-3"],
+          label[for="next-2"],
+          label[for="next-1"] {
+            position: absolute;
+            top: 225px;
+            right: -25px;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: var(--light-grayish-blue);
+          }
+
+          section[class="main-card"]:has(input[id="next-4"]:checked),
+          section[class="main-card"]:has(input[id="previous-2"]:checked),
+          section[class="main-card"]:has(input[id="thumbnail-1"]:checked) {
+            button[class="image-1"] {
+              display: grid;
+            }
+
+            label[for="thumbnail-1"] img {
+              filter: saturate(0.5);
+              border-radius: 10px;
+              border: 1px solid var(--orange);
+              box-shadow: 0px 0px 2px 1px red;
+            }
+          }
+
+          section[class="main-card"]:has(input[id="next-1"]:checked),
+          section[class="main-card"]:has(input[id="previous-3"]:checked),
+          section[class="main-card"]:has(input[id="thumbnail-2"]:checked) {
+            button[class="image-2"] {
+              display: grid;
+            }
+
+            label[for="thumbnail-2"] img {
+              filter: saturate(0.5);
+              border-radius: 10px;
+              border: 1px solid var(--orange);
+              box-shadow: 0px 0px 2px 1px red;
+            }
+          }
+
+          section[class="main-card"]:has(input[id="next-2"]:checked),
+          section[class="main-card"]:has(input[id="previous-4"]:checked),
+          section[class="main-card"]:has(input[id="thumbnail-3"]:checked) {
+            button[class="image-3"] {
+              display: grid;
+            }
+
+            label[for="thumbnail-3"] img {
+              filter: saturate(0.5);
+              border-radius: 10px;
+              border: 1px solid var(--orange);
+              box-shadow: 0px 0px 2px 1px red;
+            }
+          }
+
+          section[class="main-card"]:has(input[id="next-3"]:checked),
+          section[class="main-card"]:has(input[id="previous-1"]:checked),
+          section[class="main-card"]:has(input[id="thumbnail-4"]:checked) {
+            button[class="image-4"] {
+              display: grid;
+            }
+
+            label[for="thumbnail-4"] img {
+              filter: saturate(0.5);
+              border-radius: 10px;
+              border: 1px solid var(--orange);
+              box-shadow: 0px 0px 2px 1px red;
+            }
+
+          }
+
+          section[id="lightbox"] {
+            transition: display 500ms, opacity 2s;
+          }
+
+          section[id="lightbox"]:popover-open {
+            display: grid;
+            place-items: center;
+            height: 100svh;
+            width: 100svw;
+            background-color: hsl(0deg, 0%, 0%, 75%);
+          }
+
+          section[class="right"] {
+            display: grid;
+            width: 445px;
+            justify-self: start;
+            align-content: center;
+            padding-left: 100px;
+            margin-bottom: 100px;
+          }
+
+          p[class="company-name"] {
+            color: var(--dark-grayish-blue);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+          }
+
+          section[class="right"] h1 {
+            font-size: 3em;
+            margin: 5px 0px;
+          }
+
+          p[class="product-description"] {
+            color: var(--dark-grayish-blue);
+          }
+
+          section[class="price"] {
+            font-size: 2em;
+            display: grid;
+            grid-template-columns: min-content 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+          }
+
+          section[class="current-price"] {
+            font-weight: 700;
+            color: var(--very-dark-blue)
+          }
+
+          section[class="discount"] {
+            background-color: var(--very-dark-blue);
+            color: white;
+            height: min-content;
+            width: min-content;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.7em;
+          }
+
+          section[class="previous-price"] {
+            text-decoration: line-through;
+            font-size: 0.5em;
+            color: var(--dark-graysih-blue);
+          }
+
+          section[class="cart-controls"] {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+          }
+
+          button[id="add-to-cart"] {
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            gap: 5px;
+            color: var(--very-dark-blue);
+            background-color: var(--orange);
+            font-weight: 700;
+            border-color: transparent;
+            border-radius: 15px;
+            font-size: large;
+            width: 100%;
+            cursor: pointer;
+          }
+
+          button[id="add-to-cart"]:hover {
+            filter: brightness(1.2);
+          }
+
+          button[id="add-to-cart"] svg {
+            height: 22px;
+            width: 20px;
+            fill: var(--very-dark-blue);
+          }
+
+          section[class="controls"] {
+            display: grid;
+            grid-template-columns: 50px 50px 50px;
+            background-color: var(--light-grayish-blue);
+            width: min-content;
+            padding: 10px;
+            border-radius: 5px;
+          }
+
+          section[class="controls"] button {
+            border-color: transparent;
+            background-color: transparent;
+            cursor: pointer;
+          }
+
+          section[class="controls"] button:hover {
+            filter: contrast(0.7);
+          }
+
+          section[class="controls"] button svg {
+            display: grid;
+            place-self: center;
+            width: 12px;
+            height: 12px;
+          }
+
+          span[class="quantity"] {
+            display: grid;
+            place-content: center;
+            color: var(--very-dark-blue);
+            font-weight: 700;
+          }
+
+          @starting-style {
+
+            section[id="lightbox"] {
+              opacity: 0;
+            }
+          }
+
+
+          @container(inline-size < 1100px) {
+
+            section[class="main-card"] {
+              display: grid;
+              grid-template-columns: 1fr;
+              justify-items: end;
+            }
+
+            section[class="left"] {
+              width: 100%;
+            }
+
+            section[class="left"] button {
+              width: 100%;
+              place-self: center;
+            }
+
+            section[class="left"] button img {
+              width: 100%;
+            }
+
+            label[for="previous-4"],
+            label[for="previous-3"],
+            label[for="previous-2"],
+            label[for="previous-1"] {
+              left: 25px;
+            }
+
+            label[for="next-4"],
+            label[for="next-3"],
+            label[for="next-2"],
+            label[for="next-1"] {
+              right: 25px;
+            }
+
+            section[id="lightbox"]:popover-open {
+              display: none;
+            }
+
+            section[class="thumbnails"] {
+              display: none;
+            }
+
+            section[class="main-card"]:has(input[id="next-4"]:checked),
+            section[class="main-card"]:has(input[id="previous-2"]:checked),
+            section[class="main-card"]:has(input[id="thumbnail-1"]:checked) {
+              label[for="previous-1"] {
+                display: grid;
+                place-items: center;
+              }
+
+              label[for="next-1"] {
+                display: grid;
+                place-items: center;
+              }
+            }
+
+            section[class="main-card"]:has(input[id="next-1"]:checked),
+            section[class="main-card"]:has(input[id="previous-3"]:checked),
+            section[class="main-card"]:has(input[id="thumbnail-2"]:checked) {
+
+              label[for="previous-2"] {
+                display: grid;
+                place-items: center;
+              }
+
+              label[for="next-2"] {
+                display: grid;
+                place-items: center;
+              }
+            }
+
+            section[class="main-card"]:has(input[id="next-2"]:checked),
+            section[class="main-card"]:has(input[id="previous-4"]:checked),
+            section[class="main-card"]:has(input[id="thumbnail-3"]:checked) {
+              label[for="previous-3"] {
+                display: grid;
+                place-items: center;
+              }
+
+              label[for="next-3"] {
+                display: grid;
+                place-items: center;
+              }
+
+            }
+
+            section[class="main-card"]:has(input[id="next-3"]:checked),
+            section[class="main-card"]:has(input[id="previous-1"]:checked),
+            section[class="main-card"]:has(input[id="thumbnail-4"]:checked) {
+              label[for="previous-4"] {
+                display: grid;
+                place-items: center;
+              }
+
+              label[for="next-4"] {
+                display: grid;
+                place-items: center;
+              }
+
+            }
+
+            section[class="left"] button img {
+              border-radius: 0;
+            }
+
+            section[class="right"] {
+              width: 100%;
+              padding-left: unset;
+              margin-bottom: unset;
+              box-sizing: border-box;
+              padding: 20px;
+            }
+
+            section[class="cart-controls"] {
+              grid-template-columns: 1fr;
+            }
+
+            section[class="controls"] {
+              grid-template-columns: 1fr 1fr 1fr;
+              width: 100%;
+            }
+
+            section[class="price"] {
+              display: grid;
+              grid-template-columns: min-content 1fr auto;
+              align-items: center;
+            }
+          }
+        </style>
+      </template>
+
+    </product-display-component>
 
   </main>
 

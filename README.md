@@ -1,3 +1,5 @@
+[View Solution](https://maudepod.github.io/ecommerce-product-page-main-web-components/)
+
 # Frontend Mentor - E-commerce product page
 
 ![Design preview for the E-commerce product page coding challenge](./design/desktop-preview.jpg)
